@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Notification"
+        content.body = "This is a notification"
+        content.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
     }
 
 
